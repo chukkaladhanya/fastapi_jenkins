@@ -5,7 +5,7 @@ pipeline{
 
         stage("Clone Repo"){
             steps{
-                git 
+                git 'https://github.com/chukkaladhanya/fastapi_jenkins.git'
             }
         }
 
