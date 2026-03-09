@@ -23,6 +23,3 @@ def test_invalid():
 
     response = test_app.get("/details?sort_by=name")
     assert response.status_code == 400
-
-
-    
