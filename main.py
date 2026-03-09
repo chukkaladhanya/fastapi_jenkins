@@ -1,5 +1,5 @@
 from fastapi.responses import RedirectResponse
-from fastapi import FastAPI,status
+from fastapi import FastAPI, HTTPException,status
 from load_data import load_data
 import sqlite3
 
@@ -36,12 +36,13 @@ def get_dataset_details():
 
 def get_female_students(gender : str):
     if(gender.lower() != "female" and gender.lower() != "male"):
-        return {
-            "status":"error",
-            "status_code:":status.HTTP_400_BAD_REQUEST,
-            "message":"gender is invalid , only female and male are allowed"
-        }
-
+        raise HTTPException(
+        status_code=400,
+        detail={
+            "status": "error", 
+            "message": "gender is invalid, only female and male are allowed"
+            }       
+    )
 
     conn = sqlite3.connect("database.db")
     cursor = conn.cursor()
