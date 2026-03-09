@@ -38,7 +38,7 @@ def sort_details(sort_by:str | None=None):
         else:
             raise HTTPException(
                 status_code=400,
-                details={
+                detail={
                     "status":"error",
                     "message":"Invalid parameter for sorting, only age, medu, fedu, studytime, traveltime and freetime are allowed"
                 }
