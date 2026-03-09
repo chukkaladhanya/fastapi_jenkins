@@ -18,6 +18,7 @@ pipeline{
         stage("install dependencies"){
             steps{
                     sh '''
+                        #!/bin/bash
                         python3 -m venv venv
                         source venv/bin/activate
                         pip install --upgrade pip
@@ -28,13 +29,20 @@ pipeline{
 
         stage("run test cases"){
             steps{
-                sh 'pytest'
+                sh '''
+                #!/bin/bash
+                source venv/bin/activate
+                pytest'''
             }
         }
 
         stage("start fastapi application"){
             steps{
-                sh 'uvicorn main:app --host 0.0.0.0 --port 8000'
+                sh '''
+                #!/bin/bash
+                source venv/bin/activate
+                uvicorn main:app --host 0.0.0.0 --port 8000
+                '''
             }
         }
     }
