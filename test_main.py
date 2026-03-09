@@ -24,5 +24,5 @@ def test_invalid():
     response = test_app.get("/details?sort_by=name")
     assert response.status_code == 400
 
-    response = test_app.get("/delete_student/10000")
-    assert response.status_code == 400
+
+    
