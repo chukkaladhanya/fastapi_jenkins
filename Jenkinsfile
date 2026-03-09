@@ -3,9 +3,15 @@ pipeline{
 
     stages {
 
+        stage('Clean Workspace') {
+            steps {
+                deleteDir()  // This deletes all files in the current workspace
+            }
+        }
+
         stage("Clone Repo"){
             steps{
-                git 'https://github.com/chukkaladhanya/fastapi_jenkins.git'
+                git branch: 'main', url: 'https://github.com/chukkaladhanya/fastapi_jenkins.git'
             }
         }
 
